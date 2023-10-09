@@ -10,8 +10,6 @@ _ft_strdup:
     push rax
     call _ft_strlen
     mov rdi, rax
-    ; mov rax, 0x02000000
-    ; syscall
     call _malloc
     jc _err
     pop rsi
