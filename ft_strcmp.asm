@@ -14,7 +14,7 @@ _loop:
 
 _diff_char:
     sub al, cl
-    movzx rax, al
+    movsx rax, al
     ret
 _loop_end:
     mov rax, 0
