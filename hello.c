@@ -1,5 +1,9 @@
-#include <unistd.h>
+#include <stdlib.h>
 
-void start() {
-    start();
+void hello(){
+    malloc(1);
+}
+
+int main() {
+    hello();
 }
