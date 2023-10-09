@@ -1,9 +1,9 @@
 section .text
-        global  _ft_write
+        global  _ft_read
         extern  ___error
 
-_ft_write:
-    mov rax, 0x02000004
+_ft_read:
+    mov rax, 0x02000003
     syscall
     jc _err
     ret
