@@ -6,13 +6,15 @@ section .text
 _ft_read:
     mov rax, 0x02000003
     syscall
-    jc _err
+    test rax, rax
+    js _err
     ret
 
 _err:
     push rax
     call ___error
     pop rdx
+    neg rdx
     mov [rax], rdx
     mov rax, -1
     ret

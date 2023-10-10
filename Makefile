@@ -1,6 +1,6 @@
 NAME := libasm.a
 FILES := ft_strlen ft_strcpy ft_strcmp ft_write ft_read ft_strdup
-SRCS := $(addsuffix .asm, $(FILES))
+SRCS := $(addsuffix .s, $(FILES))
 OBJS := $(addsuffix .o, $(FILES))
 
 all: $(NAME)
@@ -8,7 +8,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	ar r $(NAME) $(OBJS)
 
-%.o: %.asm
+%.o: %.s
 	nasm -f macho64 $< -o $@
 
 clean:

@@ -11,7 +11,8 @@ _ft_strdup:
     call _ft_strlen
     mov rdi, rax
     call _malloc
-    jc _err
+    test rax, rax
+    js _err
     pop rsi
     mov rdi, rax
     call _ft_strcpy
@@ -21,6 +22,7 @@ _err:
     push rax
     call ___error
     pop rdx
+    neg rdx
     mov [rax], rdx
     mov al, byte 0
     movsx rax, al
