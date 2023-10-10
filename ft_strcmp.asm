@@ -1,10 +1,11 @@
 section .text
         global  _ft_strcmp
+    ; ft_strcmp(const char *s1, const char *s2) -> ssize_t
 _ft_strcmp:
-    mov r10, 0
+    xor r10, r10
 _loop:
-    mov al, [rdi + r10]
-    mov cl, [rsi + r10]
+    mov al, byte [rdi + r10]
+    mov cl, byte [rsi + r10]
     cmp al, cl
     jne _diff_char
     test al, al

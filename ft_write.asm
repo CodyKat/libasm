@@ -2,6 +2,7 @@ section .text
         global  _ft_write
         extern  ___error
 
+    ; ft_write(int fd, const void *buf, size_t nbyte)
 _ft_write:
     mov rax, 0x02000004
     syscall

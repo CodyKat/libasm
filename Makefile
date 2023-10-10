@@ -6,7 +6,7 @@ OBJS := $(addsuffix .o, $(FILES))
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	ar rc $(NAME) $(OBJS)
+	ar r $(NAME) $(OBJS)
 
 %.o: %.asm
 	nasm -f macho64 $< -o $@

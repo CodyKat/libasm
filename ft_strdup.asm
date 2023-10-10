@@ -5,9 +5,9 @@ section .text
         extern  _ft_strlen
         extern  _malloc
 
-; strdup(const char *s1)
+    ; strdup(const char *s1) -> char *
 _ft_strdup:
-    push rax
+    push rdi
     call _ft_strlen
     mov rdi, rax
     call _malloc
@@ -15,6 +15,7 @@ _ft_strdup:
     pop rsi
     mov rdi, rax
     call _ft_strcpy
+
     ret
 
 _err:
