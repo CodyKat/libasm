@@ -2,11 +2,13 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
+#include <errno.h>
 size_t ft_strlen(const char *str);
 char *ft_strcpy(char *dst, const char *srs);
 int ft_strcmp(const char *s1, const char *s2);
-ssize_t ft_write(int fd, const void *buf, size_t nbyte);
 char *ft_strdup(const char *s1);
+ssize_t ft_write(int fd, const void *buf, size_t nbyte);
+ssize_t ft_read(int fd, void *buf, size_t nbyte);
 
 int main() {
     char *str = "Hello World";
@@ -34,5 +36,28 @@ int main() {
     printf("strdup: %s\n", dst);
 
     free(dst);
+
+    printf("\n======================================\n\n");
+
+    printf("ft_strlen empty string : %zu\n", ft_strlen(""));
+    char str2[42];
+    ft_strcpy(str2, "");
+    printf("ft_strcpy empty string : %s\n", str2);
+    char *str3 = ft_strdup("");
+    printf("ft_strdup empty string: %s\n", str3);
+    printf("ft_strcmp empty string: %d\n", ft_strcmp("", ""));
+    
+    if (ft_write(-1, "1", 1) == -1) {
+        printf("ft_write failed, errno : %d\n\n", errno);
+    }
+    memset(str2, 0, 42);
+    if (ft_read(0, str2, 42) == -1) {
+        printf("ft_read failed, errno : %d\n\n", errno);
+    }
+    memset(str2, 0, 42);
+    if (ft_read(-1, str2, 42) == -1) {
+        printf("ft_read failed, errno : %d\n\n", errno);
+    }
+    free(str3);
     return 0;
 }

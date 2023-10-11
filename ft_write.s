@@ -2,19 +2,20 @@ section .text
         global  _ft_write
         extern  ___error
 
-    ; ft_write(int fd, const void *buf, size_t nbyte)
+    ; ft_write(int fd, const void *buf, size_t nbyte) -> ssize_t
 _ft_write:
+    push rbp
+    mov rbp, rsp
     mov rax, 0x02000004
     syscall
-    test rax, rax
-    js _err
+    jc _err
+    pop rbp
     ret
 
 _err:
-    push rax
+    mov rdx, rax
     call ___error
-    pop rdx
-    neg rdx
     mov [rax], rdx
     mov rax, -1
+    pop rbp
     ret
