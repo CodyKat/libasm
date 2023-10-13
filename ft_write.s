@@ -9,6 +9,8 @@ _ft_write:
     mov rax, 0x02000004
     syscall
     jc _err
+
+_err_done:
     pop rbp
     ret
 
@@ -17,5 +19,4 @@ _err:
     call ___error
     mov [rax], rdx
     mov rax, -1
-    pop rbp
-    ret
+    jmp _err_done
