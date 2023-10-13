@@ -13,30 +13,39 @@ ssize_t ft_read(int fd, void *buf, size_t nbyte);
 
 int main() {
     char *str = "Hello World";
-    char *dst = malloc(sizeof(char) * ft_strlen(str) + 1);
+    char *dst = malloc(strlen(str) + 1);
+
+
+    printf("strlen: %zu\n", strlen(str));
+    printf("strcpy: %s\n", strcpy(dst, str));
+    printf("strcmp expect 0 : %d\n", strcmp(str, dst));
+    dst[strlen(str) - 1] = 'c';
+    printf("strcmp expect 1 : %d\n", strcmp(str, dst));
+    printf("write: %zd\n", write(1, str, 13));
+
+    free(dst);
+    dst = strdup(str);
+    printf("strdup: %s\n", dst);
+
+
+    printf("\n\n");
+
+    if (dst == NULL)
+        dst = malloc(strlen(str) + 1);
 
     printf("ft_strlen: %zu\n", ft_strlen(str));
     printf("ft_strcpy: %s\n", ft_strcpy(dst, str));
     printf("ft_strcmp expect 0 : %d\n", ft_strcmp(str, dst));
-    dst[10] = 'c';
+    dst[ft_strlen(str) - 1] = 'c';
     printf("ft_strcmp expect 1 : %d\n", ft_strcmp(str, dst));
     printf("ft_write: %zd\n", ft_write(1, str, 13));
+
+    free(dst);
     dst = ft_strdup(str);
     printf("ft_strdup: %s\n", dst);
 
-    free(dst);
-
-    printf("\n\n");
-    printf("strlen: %zu\n", strlen(str));
-    printf("strcpy: %s\n", strcpy(dst, str));
-    printf("strcmp expect 0 : %d\n", strcmp(str, dst));
-    dst[10] = 'c';
-    printf("strcmp expect 1 : %d\n", strcmp(str, dst));
-    printf("write: %zd\n", write(1, str, 13));
-    dst = strdup(str);
-    printf("strdup: %s\n", dst);
-
-    free(dst);
+    if (dst)
+        free(dst);
 
     printf("\n======================================\n\n");
 
@@ -63,17 +72,28 @@ int main() {
 
 
 
+    printf("\n======================================\n\n");
+
+
     char str1[1000];
     int fd = open("infile.txt", O_RDONLY);
     int out_fd1 = open("ft_outfile.txt", O_WRONLY | O_CREAT, 0644);
     int out_fd2 = open("outfile.txt", O_WRONLY | O_CREAT, 0644);
-    read(fd, str1, 1000);
-    write(out_fd2, str1, 100);
+    if (read(fd, str1, 1000) == -1) {
+        printf("read failed, errno : %d", errno);
+    }
+    if (write(out_fd2, str1, 100) == -1) {
+        printf("write failed errno : %d", errno);
+    }
 
     close(fd);
     fd = open("infile.txt", O_RDONLY);
 
-    ft_read(fd, str1, 1000);
-    ft_write(out_fd1, str1, 100);
+    if (ft_read(fd, str1, 1000) == -1) {
+        printf("read failed, errno : %d", errno);
+    }
+    if (ft_write(out_fd1, str1, 100) == -1) {
+        printf("write failed errno : %d", errno);
+    }
     return 0;
 }
