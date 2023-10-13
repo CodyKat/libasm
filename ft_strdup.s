@@ -7,14 +7,17 @@ section .text
 
     ; strdup(const char *s1) -> char *
 _ft_strdup:
-    push rdi
+    push rbp
+    mov rbp, rsp
+    mov r12, rdi
     call _ft_strlen
     mov rdi, rax
     call _malloc
     jc _err
-    pop rsi
+    mov rsi, r12
     mov rdi, rax
     call _ft_strcpy
+    pop rbp
     ret
 
 _err:
@@ -23,4 +26,5 @@ _err:
     mov [rax], rdx
     mov al, byte 0
     movsx rax, al
+    pop rbp
     ret

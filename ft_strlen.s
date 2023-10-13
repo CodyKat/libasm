@@ -4,6 +4,8 @@ section .text
 _ft_strlen:
     ; 
     ; int loop_count = 0;
+    push rbp
+    mov rbp, rsp
     mov rax, 0
 _loop:
     ; while (str[loop_count] != '\0')
@@ -13,4 +15,5 @@ _loop:
     inc rax
     jmp _loop
 _loop_end:
+    pop rbp
     ret
