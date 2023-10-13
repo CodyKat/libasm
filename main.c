@@ -63,23 +63,17 @@ int main() {
 
 
 
-    // char str1[1000];
-    // int fd = open("infile.txt", O_RDONLY);
-    // int out_fd1 = open("ft_outfile.txt", O_WRONLY | O_CREAT, 0644);
-    // int out_fd2 = open("outfile.txt", O_WRONLY | O_CREAT, 0644);
-    // read(fd, str1, 1000);
-    // write(out_fd2, str1, 100);
+    char str1[1000];
+    int fd = open("infile.txt", O_RDONLY);
+    int out_fd1 = open("ft_outfile.txt", O_WRONLY | O_CREAT, 0644);
+    int out_fd2 = open("outfile.txt", O_WRONLY | O_CREAT, 0644);
+    read(fd, str1, 1000);
+    write(out_fd2, str1, 100);
 
-    // close(fd);
-    // fd = open("infile.txt", O_RDONLY);
+    close(fd);
+    fd = open("infile.txt", O_RDONLY);
 
-    // // printf("before ft_read\n");
-    // ft_read(fd, str1, 1000);
-    // // printf("after ft_read\n");
-
-
-    // printf("before ft_write\n");
-    // ft_write(out_fd1, str1, 100);
-    // printf("after ft_write\n");
-    // return 0;
+    ft_read(fd, str1, 1000);
+    ft_write(out_fd1, str1, 100);
+    return 0;
 }
