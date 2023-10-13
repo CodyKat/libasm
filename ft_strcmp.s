@@ -4,6 +4,7 @@ section .text
 _ft_strcmp:
     push rbp
     xor r10, r10
+
 _loop:
     mov rbp, rsp
     mov al, byte [rdi + r10]
@@ -20,6 +21,7 @@ _diff_char:
     movsx rax, al
     pop rbp
     ret
+
 _loop_end:
     mov rax, 0
     pop rbp

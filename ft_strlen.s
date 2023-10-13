@@ -7,6 +7,7 @@ _ft_strlen:
     push rbp
     mov rbp, rsp
     mov rax, 0
+
 _loop:
     ; while (str[loop_count] != '\0')
     ;    loop_count++;
@@ -14,6 +15,7 @@ _loop:
     je _loop_end
     inc rax
     jmp _loop
+
 _loop_end:
     pop rbp
     ret

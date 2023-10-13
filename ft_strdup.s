@@ -17,6 +17,8 @@ _ft_strdup:
     mov rsi, r12
     mov rdi, rax
     call _ft_strcpy
+
+_err_done:
     pop rbp
     ret
 
@@ -26,5 +28,4 @@ _err:
     mov [rax], rdx
     mov al, byte 0
     movsx rax, al
-    pop rbp
-    ret
+    jmp _err_done
